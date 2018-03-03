@@ -26,7 +26,7 @@ class MapScreen extends Component {
     }
 
     componentDidMount() {
-        this.props.actions.retrieve();
+        //this.props.actions.retrieve();
         Location.watchPositionAsync(GEOLOCATION_OPTIONS, this.locationChanged);
     }
 

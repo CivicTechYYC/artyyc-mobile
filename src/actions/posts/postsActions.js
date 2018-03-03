@@ -23,20 +23,20 @@ export function clearErrors() {
 
 export function retrieve() {
   console.log('firebase',firebase)
-  // const Posts = firebase.firestore().collection('posts');
-  // return function (dispatch) {
-  //   return Posts.get()
-  //     .then(({ docs }) => {
-  //       const posts = docs.map((doc) => {
-  //         return {
-  //           id: doc.id,
-  //           ...doc.data(),
-  //         };
-  //       });
-  //       return dispatch(setPostsFetchedSuccess(posts));
-  //     })
-  //     .catch(err => console.log(err));
-  // };
+  const Posts = firebase.firestore().collection('posts');
+  return function (dispatch) {
+    return Posts.get()
+      .then(({ docs }) => {
+        const posts = docs.map((doc) => {
+          return {
+            id: doc.id,
+            ...doc.data(),
+          };
+        });
+        return dispatch(setPostsFetchedSuccess(posts));
+      })
+      .catch(err => console.log(err));
+  };
 }
 
 

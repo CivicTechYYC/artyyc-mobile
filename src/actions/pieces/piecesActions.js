@@ -19,12 +19,7 @@ export function retrieve() {
   return function (dispatch) {
     return Pieces.get()
       .then(({ docs }) => {
-        const pieces = docs.map((doc) => {
-          return {
-            doc
-          };
-        });
-        return dispatch(setPiecesFetchedSuccess(pieces));
+        return dispatch(setPiecesFetchedSuccess(docs));
       })
       .catch(err => console.log(err));
   };
