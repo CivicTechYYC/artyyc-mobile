@@ -1,13 +1,17 @@
 import React from 'react';
-import { Container, Content } from 'native-base';
+import { Container, Content, Button } from 'native-base';
 
 import { Text } from '../../components';
 
-const ProfileScreen = () => {
+const ProfileScreen = (props) => {
+	console.log("priflle", props);
   return (
     <Container>
       <Content>
         <Text>Profile Coming Soon</Text>
+        <Button onPress={() => props.actions.logoutUser()}>
+          <Text>Logout</Text>
+        </Button>
       </Content>
     </Container>
   );

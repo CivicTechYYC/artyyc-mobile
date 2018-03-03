@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 import ProfileScreen from './ProfileScreen';
-// import * as PostsActions from '../../actions/posts/postsActions';
+import * as AuthActions from '../../actions/auth/authActions';
 
 // eslint-disable-next-line no-unused-vars
 function mapStateToProps(state, ownProps) {
@@ -13,8 +13,9 @@ function mapStateToProps(state, ownProps) {
 }
 // eslint-disable-next-line no-unused-vars
 function mapDispatchToProps(dispatch) {
+	console.log("AuthActions", AuthActions);
   return {
-    // actions: bindActionCreators(PostsActions, dispatch),
+    actions: bindActionCreators(AuthActions, dispatch),
   };
 }
 
