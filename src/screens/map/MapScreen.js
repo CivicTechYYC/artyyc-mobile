@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { Container, Content, List } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { MapView, Constants, Location, Permissions } from 'expo';
+import { Constants, Location, Permissions } from 'expo';
+import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 
 import { Button } from '../../components';
 
@@ -14,10 +16,17 @@ class MapScreen extends Component {
         super(props);
         this.state = {
             location: { coords: {latitude: 0, longitude: 0}},
+            region: {
+                latitude: 51.048,
+                longitude: -114.070,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.03,
+            }
         }
     }
 
-    ComponentDidMount() {
+    componentDidMount() {
+        this.props.actions.retrieve();
         Location.watchPositionAsync(GEOLOCATION_OPTIONS, this.locationChanged);
     }
 
@@ -32,7 +41,7 @@ class MapScreen extends Component {
     }
 
     onRegionChange = (region) => {
-        this.setState({ region });
+       // this.setState({ region });
       }
 
     static navigationOptions = ({ navigation }) => {
@@ -57,15 +66,20 @@ class MapScreen extends Component {
             <MapView
                 style={{ flex: 1 }}
                 showsUserLocation={true}
-                initialRegion={{latitude: 51.046,
-                    longitude: -114.0708,
-                    latitudeDelta: 0.1,
-                    longitudeDelta: 0.05}}
                 region={this.state.region}
-                followsUserLocation={true}
                 onRegionChange={this.onRegionChange}
+                followsUserLocation={true}
                 provider="google"
-          />
+            >
+               {this.props.pieceMarkers.map((marker, i) => (
+                    <Marker
+                    coordinate={{latitude: marker.location.coordinates[1], longitude: marker.location.coordinates[0]}}
+                    title={marker.title || marker.artist}
+                    description={marker.desc1}
+                    key={`${marker.art_id}-${i}`}
+                    />))}
+        
+            </MapView>
         )
     }
 }

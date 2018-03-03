@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import PostsScreen from './PostsScreen';
-import * as PostsActions from '../../actions/posts/postsActions';
+import * as PiecesActions from '../../actions/posts/piecesActions';
 
 // eslint-disable-next-line no-unused-vars
 function mapStateToProps(state, ownProps) {
@@ -14,7 +14,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(PostsActions, dispatch),
+    actions: bindActionCreators(PiecesActions, dispatch),
   };
 }
 

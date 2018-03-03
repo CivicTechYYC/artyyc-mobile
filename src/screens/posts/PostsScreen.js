@@ -20,7 +20,7 @@ class PostsScreen extends Component {
 
     return {
       headerRight,
-      title: 'List Posts',
+      title: 'List Pieces',
     };
   }
 
