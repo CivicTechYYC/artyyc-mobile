@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "tracker",
+    "description": "An empty new project",
+    "slug": "tracker",
+    "privacy": "public",
+    "sdkVersion": "23.0.0",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "primaryColor": "#cccccc",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "facebookScheme": "fb388571664919356",
+    "facebookAppId": "388571664919356",
+    "facebookDisplayName": "Tracker2"
+  }
+}
