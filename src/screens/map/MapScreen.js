@@ -16,10 +16,17 @@ class MapScreen extends Component {
         super(props);
         this.state = {
             location: { coords: {latitude: 0, longitude: 0}},
+            region: {
+                latitude: 51.048,
+                longitude: -114.070,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.03,
+            }
         }
     }
 
-    ComponentDidMount() {
+    componentDidMount() {
+        this.props.actions.retrieve();
         Location.watchPositionAsync(GEOLOCATION_OPTIONS, this.locationChanged);
     }
 
@@ -64,12 +71,12 @@ class MapScreen extends Component {
                 followsUserLocation={true}
                 provider="google"
             >
-               {this.props.pieceMarkers.map(marker => (
+               {this.props.pieceMarkers.map((marker, i) => (
                     <Marker
-                    coordinate={marker.location.coordinates}
+                    coordinate={{latitude: marker.location.coordinates[1], longitude: marker.location.coordinates[0]}}
                     title={marker.title || marker.artist}
                     description={marker.desc1}
-                    key={marker.art_id}
+                    key={`${marker.art_id}-${i}`}
                     />))}
         
             </MapView>

@@ -2,6 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import MapScreen from './MapScreen';
+import * as PiecesActions from '../../actions/pieces/piecesActions';
 
 // eslint-disable-next-line no-unused-vars
 function mapStateToProps(state, ownProps) {
@@ -11,5 +12,11 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-const MapScreenContainer = connect(mapStateToProps)(MapScreen);
+function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(PiecesActions, dispatch),
+    };
+  }
+
+const MapScreenContainer = connect(mapStateToProps, mapDispatchToProps)(MapScreen);
 export default MapScreenContainer;

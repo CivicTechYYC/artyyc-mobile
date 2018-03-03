@@ -3,7 +3,7 @@ import initialState from './initialState';
 
 const { pieces } = initialState;
 
-export default function authReducer(state = pieces, action) {
+export default function piecesReducer(state = pieces, action) {
   switch (action.type) {
     case types.PIECE_FETCH_SUCCESS:
       return {
