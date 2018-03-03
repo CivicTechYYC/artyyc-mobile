@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 
-import ProfileScreen from '../screens/profile/ProfileScreen';
+import ProfileContainer from '../screens/profile/ProfileContainer';
 
 // const headerStyle = {
 //   marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
@@ -9,7 +9,7 @@ import ProfileScreen from '../screens/profile/ProfileScreen';
 const ProfileRoutes = StackNavigator(
   {
     ProfileMain: {
-      screen: ProfileScreen,
+      screen: ProfileContainer,
       navigationOptions: {
         header: null,
       },
