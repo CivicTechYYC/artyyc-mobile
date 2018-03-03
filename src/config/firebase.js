@@ -2,12 +2,12 @@ import * as firebase from 'firebase';
 import 'firebase/firestore';
 
 const config = {
-  apiKey: 'AIzaSyDKejlF7LxgFd-M6hP6c3lo7K7Meco2BUQ',
-  authDomain: 'tracker-44d12.firebaseapp.com',
-  databaseURL: 'https://tracker-44d12.firebaseio.com',
-  projectId: 'tracker-44d12',
-  storageBucket: '',
-  messagingSenderId: '1084142728009',
+  apiKey: "AIzaSyA69ItKzpCZnLNjf7owlVIKKz-tDh2fXM8",
+  authDomain: "artyyc-e474d.firebaseapp.com",
+  databaseURL: "https://artyyc-e474d.firebaseio.com",
+  projectId: "artyyc-e474d",
+  storageBucket: "",
+  messagingSenderId: "492675319093"
 };
 
 const initializeFirebase = (store) => {
