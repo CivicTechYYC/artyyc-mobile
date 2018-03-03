@@ -20,7 +20,10 @@ export default {
         latitude: "51.0462987504574",
         location: {
           type: "Point",
-          coordinates: [-114.056673544737, 51.046298750457]
+          coordinates: {
+            latitude: -114.056673544737, 
+            longitude: 51.046298750457
+          }
         },
         longitude: "-114.056673544737",
         short_desc:
@@ -39,7 +42,9 @@ export default {
         latitude: "51.1029217675248",
         location: {
           type: "Point",
-          coordinates: [-113.95588525491, 51.102921767525]
+          coordinates: {
+            latitude: -113.95588525491, 
+            longitude: 51.102921767525 }
         },
         longitude: "-113.95588525491",
         tab_name: "Temporary Works",
