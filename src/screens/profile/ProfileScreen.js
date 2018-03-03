@@ -4,7 +4,6 @@ import { Container, Content, Button } from 'native-base';
 import { Text } from '../../components';
 
 const ProfileScreen = (props) => {
-	console.log("profille", props);
   return (
     <Container>
       <Content>

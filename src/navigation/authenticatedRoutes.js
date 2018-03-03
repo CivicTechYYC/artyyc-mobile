@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import { TabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import OverviewScreen from '../screens/overview/OverviewContainer';
+
+import PostRoutes from './postRoutes';
+import ProfileRoutes from './profileRoutes';
 import MapRoutes from './mapRoutes';
+
 
 const TabIcon = props => <Icon {...props} />;
 TabIcon.propTypes = { tintColor: PropTypes.string.isRequired };
@@ -18,6 +23,21 @@ const AuthenticatedRoutes = TabNavigator(
         tabBarIcon: <TabIcon name="md-map" size={30} />,
         title: 'Map',
       },
+    }, 
+    Posts: {
+      screen: PostRoutes,
+      navigationOptions: {
+        tabBarIcon: <TabIcon name="md-list" size={30} />,
+        title: 'Posts',
+      },
+    },
+    Profile: {
+      screen: ProfileRoutes,
+      navigationOptions: {
+        header: null,
+        tabBarIcon: <TabIcon name="md-person" size={30} />,
+        title: 'Profile',
+      },
     },
   },
   {
@@ -30,3 +50,4 @@ const AuthenticatedRoutes = TabNavigator(
 );
 
 export default AuthenticatedRoutes;
+

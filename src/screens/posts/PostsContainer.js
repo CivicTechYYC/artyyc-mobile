@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import PostsScreen from './PostsScreen';
-import * as PiecesActions from '../../actions/posts/piecesActions';
+import * as PiecesActions from '../../actions/pieces/piecesActions';
 
 // eslint-disable-next-line no-unused-vars
 function mapStateToProps(state, ownProps) {
