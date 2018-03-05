@@ -7,7 +7,7 @@ const MapRoutes = StackNavigator(
     Map: {
       screen: MapScreen,
       navigationOptions: {},
-    }
+    },
   },
   {
     initialRouteName: 'Map',

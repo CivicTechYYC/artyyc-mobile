@@ -14,13 +14,20 @@ export function setPiecesFetchedSuccess(pieces) {
 }
 
 export function retrieve() {
-  //SOON WE USE FIREBASE...
+  console.log('WHY ARE YOU CALLING SO MANY TIMES?? FIX ME! retrieveretrieveretrieve');
   const Pieces = firebase.firestore().collection('pieces');
   return function (dispatch) {
     return Pieces.get()
       .then(({ docs }) => {
-        return dispatch(setPiecesFetchedSuccess(docs));
+        const pieces = docs.map((doc) => {
+          return {
+            id: doc.id,
+            ...doc.data(),
+          };
+        });
+
+        return dispatch(setPiecesFetchedSuccess(pieces));
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log("error caught in pieces .get()", err));
   };
 }

@@ -8,15 +8,15 @@ import * as PiecesActions from '../../actions/pieces/piecesActions';
 function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
-    pieceMarkers : state.pieces.markers
+    pieces: state.pieces.list,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-      actions: bindActionCreators(PiecesActions, dispatch),
-    };
-  }
+  return {
+    actions: bindActionCreators(PiecesActions, dispatch),
+  };
+}
 
 const MapScreenContainer = connect(mapStateToProps, mapDispatchToProps)(MapScreen);
 export default MapScreenContainer;

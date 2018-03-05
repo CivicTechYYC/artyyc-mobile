@@ -5,10 +5,10 @@ const { pieces } = initialState;
 
 export default function piecesReducer(state = pieces, action) {
   switch (action.type) {
-    case types.PIECE_FETCH_SUCCESS:
+    case types.PIECES_FETCH_SUCCESS:
       return {
         ...state,
-        markers: action.pieces,
+        list: action.pieces,
       };
     default:
       return state;

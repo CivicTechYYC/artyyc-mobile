@@ -4,7 +4,7 @@ import { reducer as formReducer } from 'redux-form';
 
 import authReducer from './auth';
 import postsReducer from './posts';
-import piecesReducer from './pieces'
+import piecesReducer from './pieces';
 
 const rootReducer = (state, action) => {
   if (action.type === 'AUTH_LOGOUT_USER') {
@@ -21,6 +21,6 @@ export default function getRootReducer(navReducer) {
     nav: navReducer,
     auth: authReducer,
     posts: postsReducer,
-    pieces: piecesReducer
+    pieces: piecesReducer,
   });
 }

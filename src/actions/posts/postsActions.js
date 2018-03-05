@@ -22,7 +22,6 @@ export function clearErrors() {
 }
 
 export function retrieve() {
-  console.log('firebase',firebase)
   const Posts = firebase.firestore().collection('posts');
   return function (dispatch) {
     return Posts.get()
