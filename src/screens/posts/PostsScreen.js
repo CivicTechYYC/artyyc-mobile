@@ -31,7 +31,7 @@ class PostsScreen extends Component {
   render() {
     return (
       <Container>
-        <Content>
+{/*        <Content>
           <List style={{ marginLeft: 0, paddingLeft: 0 }}>
             {this.props.posts.map(post => (
               <PostsListItem
@@ -41,7 +41,7 @@ class PostsScreen extends Component {
               />
               ))}
           </List>
-        </Content>
+        </Content>*/}
       </Container>
     );
   }

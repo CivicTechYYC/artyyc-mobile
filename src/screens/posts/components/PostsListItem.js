@@ -20,12 +20,20 @@ const PostListItem = ({ post, navigation }) => (
 PostListItem.propTypes = {
   post: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
     status: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+};
+
+PostListItem.defaultProps = {
+  post: {
+    title: 'title',
+    description: 'description',
+    status: 'status',
+  },
 };
 
 export default PostListItem;
