@@ -11,5 +11,6 @@ export default {
   pieces: {
     error: null,
     list: [],
+    arePiecesLoaded: false
   },
 };

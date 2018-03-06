@@ -9,6 +9,7 @@ export default function piecesReducer(state = pieces, action) {
       return {
         ...state,
         list: action.pieces,
+        arePiecesLoaded: true
       };
     default:
       return state;

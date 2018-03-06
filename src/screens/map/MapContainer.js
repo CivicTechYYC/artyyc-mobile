@@ -9,6 +9,7 @@ function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     pieces: state.pieces.list,
+    arePiecesLoaded: state.pieces.arePiecesLoaded
   };
 }
 

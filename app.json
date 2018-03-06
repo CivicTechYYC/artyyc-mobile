@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "tracker",
-    "description": "An empty new project",
-    "slug": "tracker",
+    "name": "ArtMapYYC",
+    "description": "Mapping the public, corporate art of Calgary",
+    "slug": "artmap-yyc",
     "privacy": "public",
     "sdkVersion": "23.0.0",
     "version": "1.0.0",
@@ -10,7 +10,7 @@
     "primaryColor": "#cccccc",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/artmapyyc.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

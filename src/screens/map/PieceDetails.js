@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Image } from "react-native";
+import MapStyles from './styles';
 import {
   Container,
   Header,
@@ -22,10 +23,9 @@ class PieceDetails extends Component {
         <Content>
           <Card>
             <CardItem>
-            <Icon name="ios-map" style={{ fontSize: 36, color: "#333333", marginRight: 30 }} />
               <Body>
-                <Text>{details.title}</Text>
-                <Text note>{details.artist}</Text>
+                <Text style={MapStyles.PieceDetails.titleText}>{details.title}</Text>
+                <Text>A piece by {details.artist}</Text>
               </Body>
             </CardItem>
             <CardItem cardBody>
