@@ -22,7 +22,7 @@ class MapScreen extends Component {
         transparent
         // onPress={() => navigation.navigate('')}
       >
-        <Icon name="md-add" style={{ fontSize: 25, color: "red" }} />
+        <Icon name="ios-camera" style={{ fontSize: 25, color: "red" }} />
       </Button>
     );
 
@@ -69,10 +69,6 @@ class MapScreen extends Component {
       this.setState({ location });
   };
 
-  onRegionChange = region => {
-    //this.setState({ region });
-  };
-
   render() {
     console.log("this.state.pieces", this.state);
     return (
@@ -80,7 +76,6 @@ class MapScreen extends Component {
         style={{ flex: 1 }}
         showsUserLocation={true}
         region={this.state.region}
-        onRegionChange={this.onRegionChange}
         followsUserLocation={true}
         provider="google"
       >
@@ -92,6 +87,7 @@ class MapScreen extends Component {
             }}
             title={marker.title || marker.artist}
             description={marker.longDesc1}
+            onPress={() => this.props.navigation.navigate('PieceDetails', { details: marker })}
             key={`${marker.art_id}-${Math.random()}`}
           />
         ))}

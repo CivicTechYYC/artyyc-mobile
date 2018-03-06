@@ -1,6 +1,7 @@
 import { StackNavigator } from 'react-navigation';
 
 import MapScreen from '../screens/map/MapContainer';
+import PieceDetailsScreen from '../screens/map/PieceDetails';
 
 const MapRoutes = StackNavigator(
   {
@@ -8,6 +9,10 @@ const MapRoutes = StackNavigator(
       screen: MapScreen,
       navigationOptions: {},
     },
+    PieceDetails: {
+      screen: PieceDetailsScreen,
+      navigationOptions: {},
+    }
   },
   {
     initialRouteName: 'Map',
