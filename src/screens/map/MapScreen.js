@@ -85,7 +85,7 @@ class MapScreen extends Component {
 					provider="google">
 					{this.state.pieces.map(marker => (
 						<Marker
-              pinColor="orange"
+              				pinColor="orange"
 							coordinate={{
 								latitude: marker.latitude,
 								longitude: marker.longitude

@@ -1,14 +1,14 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import PostsScreen from './PostsScreen';
+import PiecesScreen from './PiecesScreen';
 import * as PiecesActions from '../../actions/pieces/piecesActions';
 
 // eslint-disable-next-line no-unused-vars
 function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
-    posts: state.posts.list,
+    pieces: state.pieces.list,
   };
 }
 
@@ -18,5 +18,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const PostsScreenContainer = connect(mapStateToProps, mapDispatchToProps)(PostsScreen);
-export default PostsScreenContainer;
+const PiecesScreenContainer = connect(mapStateToProps, mapDispatchToProps)(PiecesScreen);
+export default PiecesScreenContainer;

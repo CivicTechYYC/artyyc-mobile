@@ -4,9 +4,9 @@ import { Container, Content, List } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { Button } from '../../components';
-import PostsListItem from './components/PostsListItem';
+import PiecesListItem from './components/PiecesListItem';
 
-class PostsScreen extends Component {
+class PiecesScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const headerRight = (
       <Button
@@ -30,27 +30,27 @@ class PostsScreen extends Component {
 
   render() {
     return (
-      <Container>
-{/*        <Content>
-          <List style={{ marginLeft: 0, paddingLeft: 0 }}>
-            {this.props.posts.map(post => (
-              <PostsListItem
-                post={post}
+      <Container style={{flex: 1}}>
+     <Content style={{flex: 1}}>
+          <List style={{ flex: 1 }}>
+            {this.props.pieces.map(piece => (
+              <PiecesListItem
+                piece={piece}
                 navigation={this.props.navigation}
                 key={Math.random()}
               />
               ))}
           </List>
-        </Content>*/}
+        </Content>
       </Container>
     );
   }
 }
 
-PostsScreen.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape({
+PiecesScreen.propTypes = {
+  pieces: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
-    name: PropTypes.string,
+    title: PropTypes.string,
   })).isRequired,
   actions: PropTypes.shape({
     retrieve: PropTypes.func.isRequired,
@@ -60,4 +60,4 @@ PostsScreen.propTypes = {
   }).isRequired,
 };
 
-export default PostsScreen;
+export default PiecesScreen;
