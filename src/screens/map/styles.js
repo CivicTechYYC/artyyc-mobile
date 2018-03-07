@@ -16,12 +16,27 @@ export default (MapStyles = {
 			fontSize: 10,
 			color: "white"
 		}
-    }),
-    PieceDetails: StyleSheet.create({
-        titleText: {
-            fontSize: 36,
-            color: '#333333',
-            fontWeight: 'bold'
-        }
-    }),
+	}),
+	PieceDetails: StyleSheet.create({
+		titleText: {
+			fontSize: 30,
+			color: "#333333",
+			fontWeight: "bold"
+		},
+		pieceImage: {
+			height: 200,
+			width: null,
+			flex: 1,
+			backgroundColor: "#F3F3F3",
+			resizeMode: "contain"
+		},
+		pieceContent : {
+			color: '#626262'
+		},
+		pieceAddress: {
+			fontSize: 13,
+			marginBottom: 20,
+			fontStyle: 'italic'
+		}
+	})
 });

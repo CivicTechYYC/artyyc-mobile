@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import PostRoutes from './postRoutes';
+import PieceRoutes from './pieceRoutes';
 import ProfileRoutes from './profileRoutes';
 import MapRoutes from './mapRoutes';
 
@@ -22,8 +22,8 @@ const AuthenticatedRoutes = TabNavigator(
         title: 'Map',
       },
     },
-    Posts: {
-      screen: PostRoutes,
+    Pieces: {
+      screen: PieceRoutes,
       navigationOptions: {
         tabBarIcon: <TabIcon name="md-list" size={30} />,
         title: 'Art Pieces',
