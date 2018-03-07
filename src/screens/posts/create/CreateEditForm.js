@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { Button, Text } from 'native-base'
 import { ImagePicker } from 'expo';
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-import fetch from 'fetch';
-
+const CryptoJS = require('crypto-js');
+import axios from 'axios';
 
 import { Form } from '../../../components';
 import { FloatingLabelInput } from '../../../components/inputs';
 
 import validateForm from './validate';
+import cloudinaryConfig from '../../../config/cloudinary';
 
 const imagePickerOptions = {
   title: 'Select Avatar',
@@ -21,14 +21,36 @@ const imagePickerOptions = {
   }
 };
 
+// Take an image from user's phone, upload it to Cloudinary
+// https://cloudinary.com/documentation/image_upload_api_reference#upload
+async function uploadImage(uri, name) {
+  const timestamp = (Date.now() / 1000 | 0).toString();
+  const { api_key, api_secret, cloud_name } = cloudinaryConfig;
+  const hash_string = 'timestamp=' + timestamp + api_secret;
+  const signature = CryptoJS.SHA1(hash_string).toString();
+  const uploadURL = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+
+  const formData = new FormData();
+  formData.append('file', {uri, type: 'image/png', name: `${name}.png`});
+  formData.append('public_id', name)
+  formData.append('timestamp', timestamp);
+  formData.append('api_key', api_key);
+  formData.append('signature', signature);
+
+  return await axios.post(uploadURL, formData)
+  .then(res => {
+    console.log('axios response', res)
+    return res;
+  })
+  .catch(err => console.log('Error uploading to cloudinary', err))
+}
+
 class CreateEditPostForm extends React.Component {
   constructor(props) {
     super(props);
-    console.log('edit form constructor', props)
     this.state = {
       image: null,
     }
-
   }
 
   async _pickImage () {
@@ -36,26 +58,23 @@ class CreateEditPostForm extends React.Component {
       allowsEditing: true,
       aspect: [4, 3],
     });
-
-    // Upload to cloudinary here
-    const response = await fetch('http://res.cloudinary.com/dbeg0e56f/image/upload/w_150,h_100,c_fill/result.uri')
-    
-    console.log(result);
+    const response = await uploadImage(result.uri);  
 
     if (!result.cancelled) {
-      this.setState({ image: result.uri });
+      this.setState({ image: {
+        source: response.data.secure_url,
+      }});
     }
   }
 
   render() {
-    console.log('image: ', this.state.image)
     const initialValues = this.props.initialValues;
     let { image } = this.state;
     return (
       <Form>
         {initialValues.id && (
           <Field
-            style={{ display: 'none' }} // this need to be refactored!
+            style={{ display: 'none' }}
             component={FloatingLabelInput}
             name="id"
           />
@@ -74,7 +93,7 @@ class CreateEditPostForm extends React.Component {
           <Text>Upload Photo </Text>
         </Button>
         {image &&
-          <Image cloudName="demo" publicId="sample" width="300" crop="scale" />
+          <Image source={{uri: image.source}} style={styles.image}/>
         }
         <Button type='submit'>
           <Text>Submit</Text>
@@ -83,6 +102,14 @@ class CreateEditPostForm extends React.Component {
     );
   }
 };
+
+const styles = {
+  image: {
+      width: 200,
+      height: 200,
+      padding: 10
+    }
+}
 
 CreateEditPostForm.propTypes = {
   initialValues: PropTypes.obj,
