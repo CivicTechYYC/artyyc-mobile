@@ -1,5 +1,5 @@
-# tracker
-Expo + React Native + Redux + Firebase hackerthon style starter
+# ArtYYC
+A mobile app to catalog public and private art in Calgary, AB
 
 Getting Started
 ---------------
