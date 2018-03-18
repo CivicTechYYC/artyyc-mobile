@@ -23,7 +23,7 @@ const imagePickerOptions = {
 
 // Take an image from user's phone, upload it to Cloudinary
 // https://cloudinary.com/documentation/image_upload_api_reference#upload
-async function uploadImage(uri, name) {
+async function uploadImage(uri, name='image') {
   const timestamp = (Date.now() / 1000 | 0).toString();
   const { api_key, api_secret, cloud_name } = cloudinaryConfig;
   const hash_string = 'timestamp=' + timestamp + api_secret;
@@ -36,6 +36,9 @@ async function uploadImage(uri, name) {
   formData.append('timestamp', timestamp);
   formData.append('api_key', api_key);
   formData.append('signature', signature);
+
+  console.log('formData', formData)
+  console.log('uploadURL', uploadURL)
 
   return await axios.post(uploadURL, formData)
   .then(res => {
@@ -51,6 +54,16 @@ class CreateEditPostForm extends React.Component {
     this.state = {
       image: null,
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    console.log('getting location')
+    navigator.geolocation.getCurrentPosition((geoInfo) => {
+      console.log(geoInfo);
+      this.props.actions.setPostLocation(geoInfo);
+    });
   }
 
   async _pickImage () {
@@ -58,7 +71,7 @@ class CreateEditPostForm extends React.Component {
       allowsEditing: true,
       aspect: [4, 3],
     });
-    const response = await uploadImage(result.uri);  
+    const response = await uploadImage(result.uri);
 
     if (!result.cancelled) {
       this.setState({ image: {
@@ -67,11 +80,15 @@ class CreateEditPostForm extends React.Component {
     }
   }
 
+  handleSubmit(values) {
+    this.props.actions.createOrUpdatePost(values)
+  }
+
   render() {
     const initialValues = this.props.initialValues;
     let { image } = this.state;
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         {initialValues.id && (
           <Field
             style={{ display: 'none' }}
@@ -79,22 +96,62 @@ class CreateEditPostForm extends React.Component {
             name="id"
           />
         )}
+        {this.state.image && (
+          <Field
+            style={{ display: 'none' }}
+            component={FloatingLabelInput}
+            name="image"
+            value={this.state.image}
+          />
+        )}
         <Field
           component={FloatingLabelInput}
           name="title"
-          label="title"
+          label="Title"
         />
         <Field
           component={FloatingLabelInput}
-          name="description"
-          label="description"
+          name="artist"
+          label="Artist"
         />
-        <Button onPress={() => this._pickImage()}>
-          <Text>Upload Photo </Text>
-        </Button>
-        {image &&
+        <Field
+          component={FloatingLabelInput}
+          name="yearCreated"
+          label="Year Created"
+        />
+        <Field
+          component={FloatingLabelInput}
+          name="owner"
+          label="Owner"
+        />
+        <Field
+          component={FloatingLabelInput}
+          name="medium"
+          label="Medium"
+        />
+        <Field
+          component={FloatingLabelInput}
+          name="shortDesc"
+          label="Short Description"
+        />
+        <Field
+          component={FloatingLabelInput}
+          name="longDesc1"
+          label="Long Description"
+        />
+        <Field
+          component={FloatingLabelInput}
+          name="purchaseValue"
+          label="Purchase Value"
+        />
+        {!image && (
+          <Button onPress={() => this._pickImage()}>
+            <Text>Upload Photo </Text>
+          </Button>
+        )}
+        {image && (
           <Image source={{uri: image.source}} style={styles.image}/>
-        }
+        )}
         <Button type='submit'>
           <Text>Submit</Text>
         </Button>
@@ -112,7 +169,6 @@ const styles = {
 }
 
 CreateEditPostForm.propTypes = {
-  initialValues: PropTypes.obj,
 };
 
 CreateEditPostForm.defaultProps = {

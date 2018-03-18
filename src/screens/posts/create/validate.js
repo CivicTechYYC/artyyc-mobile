@@ -2,7 +2,7 @@ import Joi from 'joi-browser';
 
 import formValidator from '../../../helpers/form-validation';
 
-const validateSignUp = (values) => {
+const validateUpload = (values) => {
   const formSchema = Joi.object().keys({
     artId: Joi
       .string()
@@ -57,13 +57,9 @@ const validateSignUp = (values) => {
       .string()
       .min(25)
       .max(1000),
-    status: Joi
-      .string()
-      .valid(['active', 'published', 'Draft'])
-      .required(),
   });
 
   return formValidator(formSchema, values);
 };
 
-export default validateSignUp;
+export default validateUpload;

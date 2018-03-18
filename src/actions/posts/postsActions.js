@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import 'firebase/firestore';
 
 import { NavigationActions } from 'react-navigation';
-import { reset } from 'redux-form';
+import { reset, change } from 'redux-form';
 import * as types from './actionTypes';
 
 // import facebookLogin from './providers/facebook';
@@ -91,4 +91,14 @@ export function deletePost(post) {
         dispatch(reset('createEditPost'));
       });
   };
+}
+
+export function setPostLocation(geoInfo) {
+  return function (dispatch) {
+    const { latitude, longitude } = geoInfo;
+    const location = `$(${latitude}, ${longitude})`
+    return dispatch(change('createEditPost', 'latitude', latitude))
+    return dispatch(change('createEditPost', 'longitude', longitude))
+    return dispatch(change('createEditPost', 'location', location))
+  }
 }
