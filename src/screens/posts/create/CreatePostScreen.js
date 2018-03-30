@@ -7,6 +7,10 @@ import CreateEditForm from './CreateEditForm';
 import { Alert, Button, Text, View } from '../../../components';
 
 class CreatePostScreen extends Component {
+  constructor(props) {
+    super(props)
+    this._handleSubmit = this._handleSubmit.bind(this)
+  }
   static navigationOptions = header;
 
   _handleDelete(post) {
@@ -18,11 +22,16 @@ class CreatePostScreen extends Component {
     });
   }
 
+  _handleSubmit(values) {
+    console.log('submitting values')
+    this.props.actions.createOrUpdatePost(values)
+  }
+
   render() {
     return (
       <View>
         <CreateEditForm
-          onSubmit={this.props.actions.createOrUpdatePost}
+          onSubmit={this._handleSubmit}
           initialValues={this.props.post}
         />
         {_.get(this.props, 'post.id', false) && (

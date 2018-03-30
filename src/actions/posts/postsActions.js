@@ -49,7 +49,8 @@ export function createPostSuccess(post) {
 
 
 export function createOrUpdatePost(post) {
-  const Posts = firebase.firestore().collection('posts');
+  console.log('creating', post)
+  const Posts = firebase.firestore().collection('pieces');
   return function (dispatch) {
     let action;
 
@@ -58,6 +59,7 @@ export function createOrUpdatePost(post) {
       action = Posts.doc(id).update(restPost).then(() => dispatch(updatePostSuccess(post)));
     } else {
       action = Posts.add(post).then((newPost) => {
+        console.log('added new piece', newPost.id)
         return Posts.doc(newPost.id).get().then((p) => {
           dispatch(createPostSuccess({
             id: newPost.id,
@@ -67,7 +69,7 @@ export function createOrUpdatePost(post) {
       });
     }
 
-    return action.then(() => {
+    return action.then((res) => {
       dispatch(NavigationActions.back());
       dispatch(reset('createEditPost'));
     });
@@ -95,10 +97,12 @@ export function deletePost(post) {
 
 export function setPostLocation(geoInfo) {
   return function (dispatch) {
+    console.log('setting location')
     const { latitude, longitude } = geoInfo;
-    const location = `$(${latitude}, ${longitude})`
-    return dispatch(change('createEditPost', 'latitude', latitude))
-    return dispatch(change('createEditPost', 'longitude', longitude))
-    return dispatch(change('createEditPost', 'location', location))
+    const location = `$(${latitude}, ${longitude})`;
+    dispatch(change('createEditPost', 'latitude', latitude));
+    dispatch(change('createEditPost', 'longitude', longitude));
+    dispatch(change('createEditPost', 'location', location));
+    return geoinfo;
   }
 }

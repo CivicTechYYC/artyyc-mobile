@@ -23,7 +23,7 @@ const imagePickerOptions = {
 
 // Take an image from user's phone, upload it to Cloudinary
 // https://cloudinary.com/documentation/image_upload_api_reference#upload
-async function uploadImage(uri, name='image') {
+async function uploadImage(uri) {
   const timestamp = (Date.now() / 1000 | 0).toString();
   const { api_key, api_secret, cloud_name } = cloudinaryConfig;
   const hash_string = 'timestamp=' + timestamp + api_secret;
@@ -32,17 +32,13 @@ async function uploadImage(uri, name='image') {
 
   const formData = new FormData();
   formData.append('file', {uri, type: 'image/png', name: `${name}.png`});
-  formData.append('public_id', name)
   formData.append('timestamp', timestamp);
   formData.append('api_key', api_key);
   formData.append('signature', signature);
 
-  console.log('formData', formData)
-  console.log('uploadURL', uploadURL)
-
   return await axios.post(uploadURL, formData)
   .then(res => {
-    console.log('axios response', res)
+    // TODO - update redux form with info for uploaded image
     return res;
   })
   .catch(err => console.log('Error uploading to cloudinary', err))
@@ -55,13 +51,10 @@ class CreateEditPostForm extends React.Component {
       image: null,
     }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    console.log('getting location')
     navigator.geolocation.getCurrentPosition((geoInfo) => {
-      console.log(geoInfo);
       this.props.actions.setPostLocation(geoInfo);
     });
   }
@@ -78,10 +71,6 @@ class CreateEditPostForm extends React.Component {
         source: response.data.secure_url,
       }});
     }
-  }
-
-  handleSubmit(values) {
-    this.props.actions.createOrUpdatePost(values)
   }
 
   render() {
