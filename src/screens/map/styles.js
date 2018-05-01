@@ -19,6 +19,7 @@ export default (MapStyles = {
 	}),
 	PieceDetails: StyleSheet.create({
 		titleText: {
+      fontFamily: 'roboto-regular',
 			fontSize: 30,
 			color: "#333333",
 			fontWeight: "bold"

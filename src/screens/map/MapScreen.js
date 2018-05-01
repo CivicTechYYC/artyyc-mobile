@@ -10,6 +10,8 @@ import MapView, { Marker } from "react-native-maps";
 import { Button } from "../../components";
 import MapStyles from "./styles";
 
+const mapPin =  require('../../assets/images/map-pin.png');
+
 const GEOLOCATION_OPTIONS = {
 	enableHighAccuracy: true,
 	timeout: 20000,
@@ -46,16 +48,27 @@ class MapScreen extends Component {
 				latitudeDelta: 0.015,
 				longitudeDelta: 0.03
 			}
-		};
+    };
+    
+    this.getLocationAsync = this.getLocationAsync.bind(this);
 	}
 
 	componentDidMount() {
-		if (!this.props.arePiecesLoaded) {
+		if (!this.props.arePiecesLoaded && !this.state.loadInProgress) {
 			this.props.actions.retrieve();
 			this.setState({ loadInProgress: true });
 		}
-		Location.watchPositionAsync(GEOLOCATION_OPTIONS, this.locationChanged);
-	}
+		this.getLocationAsync();
+  }
+  
+  async getLocationAsync() {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status === 'granted') {
+      return Location.watchPositionAsync(GEOLOCATION_OPTIONS, this.locationChanged);
+    } else {
+      throw new Error('Location permission not granted');
+    }
+  }
 
 	componentWillReceiveProps(nextProps) {
 		if (this.state.pieces !== nextProps.pieces) {
@@ -83,9 +96,11 @@ class MapScreen extends Component {
 					region={this.state.region}
 					followsUserLocation={true}
 					provider="google">
-					{this.state.pieces.map(marker => (
+          {this.state.pieces
+          .filter(marker => marker.latitude && marker.longitude)
+          .map(marker => (
 						<Marker
-              				pinColor="orange"
+              image={mapPin}
 							coordinate={{
 								latitude: marker.latitude,
 								longitude: marker.longitude

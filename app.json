@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "ArtMapYYC",
+    "name": "ArtYYC",
     "description": "Mapping the public, corporate art of Calgary",
-    "slug": "artmap-yyc",
+    "slug": "art-yyc",
     "privacy": "public",
     "sdkVersion": "23.0.0",
     "version": "1.0.0",
@@ -10,9 +10,9 @@
     "primaryColor": "#cccccc",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/artmapyyc.png",
+      "image": "./assets/artyyc-logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#2F3A46"
     },
     "ios": {
       "supportsTablet": true

@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import * as firebase from 'firebase';
 import { Root } from 'native-base';
+import { Font } from 'expo';
 
 import { AppWithNavigationState, navReducer } from './navigation';
 import getStore from './config/store';
@@ -27,6 +28,11 @@ class App extends React.Component {
     // loading the app
     const isConnectedRef = firebase.database().ref('.info/connected');
     isConnectedRef.on('value', this._handleLoadingStateChange);
+
+    Font.loadAsync({
+      'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf'),
+      'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
+    });
   }
 
   _handleLoadingStateChange(snap) {

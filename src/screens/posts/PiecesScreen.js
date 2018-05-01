@@ -24,10 +24,6 @@ class PiecesScreen extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.actions.retrieve();
-  }
-
   render() {
     return (
       <Container style={{flex: 1}}>
