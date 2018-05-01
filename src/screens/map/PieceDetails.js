@@ -34,7 +34,7 @@ class PieceDetails extends Component {
             <CardItem>
               <Body style={{ marginTop: 25, marginBottom: 25 }}>
                 <Text adjustFontToFit style={MapStyles.PieceDetails.titleText}>{details.title}</Text>
-                <H3 style={[MapStyles.PieceDetails.pieceContent, {fontStyle: 'italic'}]}>A piece by {details.artist}</H3>
+                <H3 style={MapStyles.PieceDetails.subtitleText}>A piece by {details.artist}</H3>
               </Body>
             </CardItem>
             <CardItem cardBody>
@@ -51,7 +51,7 @@ class PieceDetails extends Component {
                   MapStyles.PieceDetails.pieceAddress]}>
                 <Icon name="ios-pin" 
                   style={[MapStyles.PieceDetails.pieceContent, 
-                  MapStyles.PieceDetails.pieceAddress, { color: 'maroon', fontSize: 18 }]}/>
+                  MapStyles.PieceDetails.pieceAddress, { color: 'rgba(0, 0, 0, 0.54)', fontSize: 18 }]}/>
                   <Text>   </Text>{details.address}
               </Text>
                 <Text style={MapStyles.PieceDetails.pieceContent}>{fullDesc}</Text>

@@ -19,25 +19,39 @@ export default (MapStyles = {
 	}),
 	PieceDetails: StyleSheet.create({
 		titleText: {
+      fontFamily: 'roboto-medium',
+      fontSize: 20,
+      lineHeight: 23,
+			color: "rgba(0, 0, 0, 0.87)",
+    },
+    subtitleText: {
       fontFamily: 'roboto-regular',
-			fontSize: 30,
-			color: "#333333",
-			fontWeight: "bold"
-		},
+      fontSize: 16,
+      lineHeight: 24,
+      color: "rgba(0, 0, 0, 0.87)",
+    },
 		pieceImage: {
-			height: 200,
+			height: 211,
 			width: null,
 			flex: 1,
 			backgroundColor: "#F3F3F3",
 			resizeMode: "contain"
 		},
 		pieceContent : {
-			color: '#626262'
+      fontFamily: 'roboto-regular',
+      fontSize: 14,
+      lineHeight: 20,
+      color: "rgba(0, 0, 0, 0.87)",
+      width: '95%',
 		},
 		pieceAddress: {
-			fontSize: 13,
-			marginBottom: 20,
-			fontStyle: 'italic'
+			fontFamily: 'roboto-regular',
+      fontSize: 12,
+      lineHeight: 16,
+      marginBottom: 11,
+      marginTop: 11,
+      padding: 10,
+      color: "rgba(0, 0, 0, 0.54)",
 		}
 	})
 });
