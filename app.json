@@ -10,8 +10,8 @@
     "primaryColor": "#cccccc",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/artyyc-logo.png",
-      "resizeMode": "contain",
+      "image": "./assets/Art-YYC-loading.png",
+      "resizeMode": "cover",
       "backgroundColor": "#2F3A46"
     },
     "ios": {
