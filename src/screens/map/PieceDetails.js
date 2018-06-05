@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { H3 } from 'native-base';
 import Icon from "react-native-vector-icons/Ionicons";
 import { Image } from "react-native";
 import MapStyles from './styles';
@@ -15,6 +14,7 @@ import {
   Thumbnail,
   Text,
   Button,
+  H3,
   Body
 } from "native-base";
 

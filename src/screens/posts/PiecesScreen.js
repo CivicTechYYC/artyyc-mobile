@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Container, Content, List, Item, Input } from "native-base";
 import Icon from "react-native-vector-icons/Ionicons";
+import Quadrants from './quadrants.json';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import helpers from '@turf/helpers';
 
 import { Button } from "../../components";
 import PiecesListItem from "./components/PiecesListItem";
@@ -10,8 +13,9 @@ class PiecesScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+      currentQuadrant: "SW",
 			inputs: {
-				searchInput: ""
+        searchInput: "",
 			}
 		};
 	}
@@ -34,7 +38,6 @@ class PiecesScreen extends Component {
 
 	render() {
 		return (
-			<Container style={{ flex: 1 }}>
 				<Content style={{ flex: 1 }}>
 					<Item
 						style={{
@@ -54,7 +57,18 @@ class PiecesScreen extends Component {
 					</Item>
 					<List style={{ flex: 1 }}>
 						{this.props.pieces
-							.filter(piece => piece.title.includes(this.state.inputs.searchInput))
+              .filter(piece => { 
+                // Pull piece.location - current format is "(51.43249242, 5235423543524)"
+                // will need to parse data but this gives us the specificity we need
+                const point = [parseInt(piece.longitude), parseInt(piece.latitude)];
+                console.log('HELLO', piece);
+                if(this.state.currentQuadrant) {
+                  return booleanPointInPolygon(point, JSON.parse(JSON.stringify(Quadrants[this.state.currentQuadrant])));
+                } else {
+                  return true;
+                }
+              })
+              .filter(piece => piece.title.includes(this.state.inputs.searchInput))
 							.map(piece => (
 								<PiecesListItem
 									piece={piece}
@@ -64,7 +78,6 @@ class PiecesScreen extends Component {
 							))}
 					</List>
 				</Content>
-			</Container>
 		);
 	}
 }
