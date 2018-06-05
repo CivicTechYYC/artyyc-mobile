@@ -29,14 +29,14 @@ const AuthenticatedRoutes = TabNavigator(
         title: 'Art Pieces',
       },
     },
-    Profile: {
-      screen: ProfileRoutes,
-      navigationOptions: {
-        header: null,
-        tabBarIcon: <TabIcon name="md-person" size={30} />,
-        title: 'Profile',
-      },
-    },
+    // Profile: {
+    //   screen: ProfileRoutes,
+    //   navigationOptions: {
+    //     header: null,
+    //     tabBarIcon: <TabIcon name="md-person" size={30} />,
+    //     title: 'Profile',
+    //   },
+    // },
   },
   {
     initialRouteName: 'Map',

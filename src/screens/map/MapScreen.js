@@ -51,41 +51,43 @@ class MapScreen extends Component {
     };
     
     this.getLocationAsync = this.getLocationAsync.bind(this);
-	}
+  }
+  
+  async getLocationAsync() {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if (status === 'granted') {
+        return Location.watchPositionAsync(GEOLOCATION_OPTIONS, this.locationChanged);
+      } else {
+        throw new Error('Location permission not granted');
+      }
+  }
+
+  locationChanged = location => {
+		const region = {
+			latitude: location.coords.latitude,
+			longitude: location.coords.longitude,
+			latitudeDelta: 0.1,
+			longitudeDelta: 0.05
+    };
+    
+		this.setState({ region });
+	};
 
 	componentDidMount() {
 		if (!this.props.arePiecesLoaded && !this.state.loadInProgress) {
 			this.props.actions.retrieve();
 			this.setState({ loadInProgress: true });
 		}
-		this.getLocationAsync();
+    
+    this.getLocationAsync();
   }
   
-  async getLocationAsync() {
-    const { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status === 'granted') {
-      return Location.watchPositionAsync(GEOLOCATION_OPTIONS, this.locationChanged);
-    } else {
-      throw new Error('Location permission not granted');
-    }
-  }
-
 	componentWillReceiveProps(nextProps) {
 		if (this.state.pieces !== nextProps.pieces) {
 			const { pieces } = nextProps;
 			this.setState({ pieces });
 		}
 	}
-
-	locationChanged = location => {
-		(region = {
-			latitude: location.coords.latitude,
-			longitude: location.coords.longitude,
-			latitudeDelta: 0.1,
-			longitudeDelta: 0.05
-		}),
-			this.setState({ location });
-	};
 
 	render() {
 		return (
