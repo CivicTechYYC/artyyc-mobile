@@ -10,7 +10,7 @@ import MapView, { Marker } from "react-native-maps";
 import { Button } from "../../components";
 import MapStyles from "./styles";
 
-const mapPin =  require('../../assets/images/map-pin.png');
+const mapPin = require('../../assets/images/map-pin.png');
 
 const GEOLOCATION_OPTIONS = {
 	enableHighAccuracy: true,
@@ -66,8 +66,8 @@ class MapScreen extends Component {
 		const region = {
 			latitude: location.coords.latitude,
 			longitude: location.coords.longitude,
-			latitudeDelta: 0.1,
-			longitudeDelta: 0.05
+			latitudeDelta: 0.03,
+			longitudeDelta: 0.03
     };
     
 		this.setState({ region });
@@ -107,7 +107,7 @@ class MapScreen extends Component {
 								latitude: marker.latitude,
 								longitude: marker.longitude
 							}}
-							onPress={() =>
+              onPress={() =>
 								this.props.navigation.navigate("PieceDetails", {
 									details: marker
 								})
