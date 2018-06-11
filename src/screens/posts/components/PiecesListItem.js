@@ -11,7 +11,7 @@ const PiecesListItem = ({ piece, navigation }) => (
     })
   }>
     <Body style={{flex: 1}}>
-      <Text>{piece.title} - A piece by {piece.artist}</Text>
+      <Text>{piece.title} - by {piece.artist}</Text>
       <Text numberOfLines={3} note>{piece.shortDesc || piece.longDesc1}</Text>
     </Body>
   </ListItem>
