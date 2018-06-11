@@ -22,10 +22,6 @@ class PieceDetails extends Component {
 
   render() {
     let { details } = this.props.navigation.state.params;
-    let fullDesc = details.longDesc1;
-    fullDesc += (details.longDesc2) ? ` ${details.longDesc2}` : '';
-    fullDesc += (details.longDesc3) ? ` ${details.longDesc3}` : '';
-    fullDesc += (details.longDesc4) ? ` ${details.longDesc4}` : '';
 
     return (
       <Container>
@@ -34,12 +30,12 @@ class PieceDetails extends Component {
             <CardItem>
               <Body style={{ marginTop: 25, marginBottom: 25 }}>
                 <Text adjustFontToFit style={MapStyles.PieceDetails.titleText}>{details.title}</Text>
-                <H3 style={MapStyles.PieceDetails.subtitleText}>A piece by {details.artist}</H3>
+                <H3 style={MapStyles.PieceDetails.subtitleText}>by {details.artist}</H3>
               </Body>
             </CardItem>
             <CardItem cardBody>
               <Image
-                source={placeholderImage}
+                source={{ uri: details.imageSource }}
                 style={MapStyles.PieceDetails.pieceImage}
               />
               
@@ -54,7 +50,7 @@ class PieceDetails extends Component {
                   MapStyles.PieceDetails.pieceAddress, { color: 'rgba(0, 0, 0, 0.54)', fontSize: 18 }]}/>
                   <Text>   </Text>{details.address}
               </Text>
-                <Text style={MapStyles.PieceDetails.pieceContent}>{fullDesc}</Text>
+                <Text style={MapStyles.PieceDetails.pieceContent}>{details.desc1}</Text>
               </Body>
             </CardItem>
           </Card>
