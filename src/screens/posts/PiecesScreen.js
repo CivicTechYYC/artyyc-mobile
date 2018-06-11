@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Content, List } from 'native-base';
+import { Container, Content, List, Text } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { Button } from '../../components';
