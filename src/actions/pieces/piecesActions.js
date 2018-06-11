@@ -7,10 +7,11 @@ import axios from 'axios';
 import { reset } from 'redux-form';
 import * as types from './actionTypes';
 
-const piecesJSON = require('../../scripts/public-art.json');
+// const piecesJSON = require('../../scripts/public-art.json');
+// const imageDataURL = 'https://services1.arcgis.com/AVP60cs0Q9PEA8rH/arcgis/rest/services/Calgary_PublicArt_PublicView/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=*&outSR=102100&resultOffset=0&resultRecordCount=1000';
 
 // import facebookLogin from './providers/facebook';
-const imageDataURL = 'https://services1.arcgis.com/AVP60cs0Q9PEA8rH/arcgis/rest/services/Calgary_PublicArt_PublicView/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=*&outSR=102100&resultOffset=0&resultRecordCount=1000';
+
 export function setPiecesFetchedSuccess(pieces) {
   return { type: types.PIECES_FETCH_SUCCESS, pieces };
 }
@@ -34,6 +35,7 @@ export function retrieve() {
   };
 }
 
+// Function to retreive images and upload all data to firebase. Deprecated
 // export  function scrapeImages() {
 //   const Pieces = firebase.firestore().collection('pieces');
 

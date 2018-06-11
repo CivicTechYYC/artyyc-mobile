@@ -21,7 +21,6 @@ import {
 class PieceDetails extends Component {
 
   render() {
-    const imageURL = 'https://s3.amazonaws.com/pastperfectonline/images/museum_104/006/990531-2.jpg';
     let { details } = this.props.navigation.state.params;
 
     return (
