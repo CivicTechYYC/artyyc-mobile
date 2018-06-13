@@ -104,8 +104,8 @@ class MapScreen extends Component {
 						<Marker
               image={mapPin}
 							coordinate={{
-								latitude: marker.latitude,
-								longitude: marker.longitude
+								latitude: parseFloat(marker.latitude),
+								longitude: parseFloat(marker.longitude)
 							}}
               onPress={() =>
 								this.props.navigation.navigate("PieceDetails", {

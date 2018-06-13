@@ -32,17 +32,17 @@ export default (MapStyles = {
     },
 		pieceImage: {
 			height: 211,
-			width: null,
+			width: '100%',
 			flex: 1,
 			backgroundColor: "#F3F3F3",
-			resizeMode: "contain"
+			resizeMode: "cover"
 		},
 		pieceContent : {
       fontFamily: 'roboto-regular',
       fontSize: 14,
       lineHeight: 20,
       color: "rgba(0, 0, 0, 0.87)",
-      width: '95%',
+      width: '100%',
 		},
 		pieceAddress: {
 			fontFamily: 'roboto-regular',
@@ -50,7 +50,7 @@ export default (MapStyles = {
       lineHeight: 16,
       marginBottom: 11,
       marginTop: 11,
-      padding: 10,
+      padding: 5,
       color: "rgba(0, 0, 0, 0.54)",
 		}
 	})

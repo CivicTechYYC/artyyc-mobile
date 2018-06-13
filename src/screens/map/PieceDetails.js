@@ -33,13 +33,10 @@ class PieceDetails extends Component {
                 <H3 style={MapStyles.PieceDetails.subtitleText}>by {details.artist}</H3>
               </Body>
             </CardItem>
-            <CardItem cardBody>
               <Image
                 source={{ uri: details.imageSource }}
                 style={MapStyles.PieceDetails.pieceImage}
               />
-              
-            </CardItem>
             <CardItem>
               <Body>
               <Text 

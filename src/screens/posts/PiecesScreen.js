@@ -22,7 +22,7 @@ class PiecesScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentQuadrant: "SW",
+			currentQuadrant: "",
 			inputs: {
 				searchInput: ""
 			}
@@ -47,7 +47,9 @@ class PiecesScreen extends Component {
 	// 	};
 	// };
 
-	setQuadrant = quadrant => this.setState({ currentQuadrant: quadrant });
+	setQuadrant = quadrant => {
+		this.setState({ currentQuadrant: quadrant });
+	};
 
 	render() {
 		return (
@@ -82,45 +84,52 @@ class PiecesScreen extends Component {
 						<NativeButton
 							small
 							success={this.state.currentQuadrant === "" && true}
-							onPress={this.setQuadrant("")}>
+							onPress={() => {
+								this.setQuadrant("");
+							}}>
 							<Text>All</Text>
 						</NativeButton>
 						<NativeButton
 							small
 							success={this.state.currentQuadrant === "NW" && true}
-							onPress={this.setQuadrant("NW")}>
+							onPress={() => {
+								this.setQuadrant("NW");
+							}}>
 							<Text>NW</Text>
 						</NativeButton>
 						<NativeButton
 							small
 							success={this.state.currentQuadrant === "NE" && true}
-							onPress={this.setQuadrant("NE")}>
+							onPress={() => {
+								this.setQuadrant("NE");
+							}}>
 							<Text>NE</Text>
 						</NativeButton>
 						<NativeButton
 							small
 							success={this.state.currentQuadrant === "SE" && true}
-							onPress={this.setQuadrant("SE")}>
+							onPress={() => {
+								this.setQuadrant("SE");
+							}}>
 							<Text>SE</Text>
 						</NativeButton>
 						<NativeButton
 							small
 							success={this.state.currentQuadrant === "SW" && true}
-							onPress={this.setQuadrant("SW")}>
+							onPress={() => {
+								this.setQuadrant("SW");
+							}}>
 							<Text>SW</Text>
 						</NativeButton>
 					</View>
 					<List style={{ flex: 1 }}>
 						{this.props.pieces
 							.filter((piece, i) => {
-								// Pull piece.location - current format is "(51.43249242, 5235423543524)"
-								// will need to parse data but this gives us the specificity we need
-								const piecePoint = point(piece.location.coordinates);
-								const poly = polygon(
-									Quadrants[this.state.currentQuadrant].geometry.coordinates
-								);
-
 								if (this.state.currentQuadrant) {
+									const piecePoint = point(piece.location.coordinates);
+									const poly = polygon(
+										Quadrants[this.state.currentQuadrant].geometry.coordinates
+									);
 									return booleanPointInPolygon(piecePoint, poly);
 								} else {
 									return true;
