@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { H3 } from 'native-base';
 import Icon from "react-native-vector-icons/Ionicons";
 import { Image } from "react-native";
 import MapStyles from './styles';
@@ -15,6 +14,7 @@ import {
   Thumbnail,
   Text,
   Button,
+  H3,
   Body
 } from "native-base";
 
@@ -33,13 +33,10 @@ class PieceDetails extends Component {
                 <H3 style={MapStyles.PieceDetails.subtitleText}>by {details.artist}</H3>
               </Body>
             </CardItem>
-            <CardItem cardBody>
               <Image
                 source={{ uri: details.imageSource }}
                 style={MapStyles.PieceDetails.pieceImage}
               />
-              
-            </CardItem>
             <CardItem>
               <Body>
               <Text 
