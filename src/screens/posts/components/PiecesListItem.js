@@ -6,7 +6,7 @@ import MapStyles from "../../map/styles";
 
 const PiecesListItem = ({ piece, navigation }) => (
 	<ListItem
-		style={{ flex: 1 }}
+		style={{ flex: 1, paddingLeft: 10 }}
 		button
 		key={piece.artId}
 		onPress={() =>
