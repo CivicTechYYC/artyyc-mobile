@@ -62,7 +62,7 @@ class PiecesScreen extends Component {
 						}}>
 						<Input
 							name="searchInput"
-							placeholder="Search by title here..."
+							placeholder="Search by title/artist"
 							value={this.state.inputs.searchInput}
 							onChangeText={text => {
 								let { inputs } = this.state;
@@ -132,9 +132,12 @@ class PiecesScreen extends Component {
 									return true;
 								}
 							})
-							.filter(piece =>
-								piece.title.includes(this.state.inputs.searchInput)
-							)
+							.filter(piece => {
+								const searchInput = this.state.inputs.searchInput.toLowerCase();
+								const titleMatch = piece.title.toLowerCase().includes(searchInput);
+								const artistMatch = piece.artist.toLowerCase().includes(searchInput);
+								return artistMatch || titleMatch;
+							})
 							.map(piece => (
 								<PiecesListItem
 									piece={piece}
