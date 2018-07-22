@@ -71,9 +71,6 @@ class PiecesScreen extends Component {
 							}}
 						/>
 					</Item>
-					<Text style={{ fontSize: 12, marginLeft: 15, marginBottom: 5 }}>
-						Filter by Quadrant:
-					</Text>
 					<View
 						style={{
 							flex: 1,
