@@ -17,16 +17,28 @@ const AuthenticatedRoutes = TabNavigator(
   {
     Map: {
       screen: MapRoutes,
-      navigationOptions: {
-        tabBarIcon: <TabIcon name="md-map" size={30} />,
-        title: 'Map',
+      navigationOptions: ({ navigation }) => {
+        return {
+          tabBarIcon: <TabIcon name="md-map" size={30} />,
+          title: 'Map',
+          tabBarOnPress: ({previousScene, scene, jumpToIndex}) => {
+            const { route } = scene;
+            navigation.navigate(scene.route.routes[0].routeName);
+          }
+        }
       },
     },
     Pieces: {
       screen: PieceRoutes,
-      navigationOptions: {
-        tabBarIcon: <TabIcon name="md-list" size={30} />,
-        title: 'Art Pieces',
+      navigationOptions: ({ navigation }) => {
+        return {
+          tabBarIcon: <TabIcon name="md-list" size={30} />,
+          title: 'Art Pieces',
+          tabBarOnPress: ({previousScene, scene, jumpToIndex}) => {
+            const { route } = scene;
+            navigation.navigate(scene.route.routes[0].routeName);
+          }
+        }
       },
     },
     // Profile: {
