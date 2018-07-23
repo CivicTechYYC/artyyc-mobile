@@ -8,7 +8,9 @@ const PieceRoutes = StackNavigator(
   {
     ListPieces: {
       screen: ListPiecesScreen,
-      navigationOptions: {},
+      navigationOptions: {
+        headerBackTitle: 'List'
+      },
     },
     CreateEditPost: {
       screen: CreatePostContainer,
