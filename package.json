@@ -10,7 +10,7 @@
     "expo": "^23.0.0",
     "firebase": "^4.6.2",
     "joi-browser": "^13.0.1",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.21",
     "native-base": "^2.3.6",
     "prop-types": "^15.6.0",
     "react": "16.0.0",
